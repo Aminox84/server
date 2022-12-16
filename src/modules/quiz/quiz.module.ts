@@ -1,4 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
+import { QuizController } from "./quiz.controller";
 
-@Module({})
-export class QuizModule {}
+
+@Module({
+    controllers:[QuizController]
+})
+export class QuizModule{
+
+}
