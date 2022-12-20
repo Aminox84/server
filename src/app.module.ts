@@ -4,9 +4,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { typeOrmConfig } from './config/typeorm.config';
 import { QuizModule } from './modules/quiz/quiz.module';
-
+import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
-  imports: [QuizModule, TypeOrmModule.forRoot(typeOrmConfig)],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => (typeOrmConfig),
+      inject: [ConfigService],
+    }),
+    QuizModule],
   controllers: [AppController],
   providers: [AppService],
 })
