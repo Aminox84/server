@@ -9,7 +9,6 @@ export class QuizController {
 
     @Get('/')
     getallQuiz() {
-
         return this.quizService.getallQuiz()
     }
 
